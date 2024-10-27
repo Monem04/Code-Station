@@ -1,0 +1,167 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(HelloWorldApp());
+}
+
+class HelloWorldApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Hello World app',
+      home: Home(),
+    );
+  }
+}
+
+//
+class Home extends StatelessWidget {
+  Home({super.key});
+
+  List<String> friendList = [
+    'Monem',
+    'Shimulla',
+    'Gopal',
+    'ridoy',
+    'hujur',
+    'Enuuu',
+    'Monem',
+    'Monem',
+    'Monem',
+    'Monem',
+    'Monem',
+    'Monem',
+    'Monem',
+    'Monem',
+    'Monem',
+    'Monem',
+    'Monem',
+    'Monem',
+    'Monem',
+    'Monem',
+  ];
+
+  TextEditingController _emailTextEditingCOntroller = TextEditingController();
+  TextEditingController _PasswordEditingCOntroller = TextEditingController();
+  GlobalKey<FormState> _formkey = GlobalKey<FormState>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Home'),
+        backgroundColor: Colors.pink,
+        actions: [
+          IconButton(onPressed: () {}, icon: const Icon(Icons.edit)),
+          IconButton(onPressed: () {}, icon: const Icon(Icons.delete))
+        ],
+        leading: const Icon(Icons.home),
+      ),
+      // body: ListView.builder(
+      //   itemCount: friendList.length,
+      //   itemBuilder: (context, index){
+      //     return ListTile(
+      //       title: Text(friendList[index]),
+      //       subtitle: Text('Friend no : $index'),
+      //       trailing: Icon(Icons.arrow_forward),
+      //       leading: CircleAvatar(
+      //         child: Icon(Icons.person),
+      //       ),
+      //       onTap: (){
+      //         print('on tap $index');
+      //       },
+      //       onLongPress: (){
+      //         print('on long press $index');
+      //       },
+      //       tileColor: Colors.white70,
+      //       contentPadding: EdgeInsets.symmetric(
+      //         horizontal: 16,
+      //         vertical: 4,
+      //       ),
+      //       //enabled: false,
+      //       dense: true,
+      //       titleTextStyle: TextStyle(
+      //         fontSize: 16,
+      //         color: Colors.deepOrange,
+      //       ),
+      //       subtitleTextStyle: TextStyle(
+      //         fontSize: 10,
+      //         color: Colors.purpleAccent,
+      //       ),
+      //       selected: true,
+      //       selectedColor: Colors.pink,
+      //     );
+      //   },
+      // )
+      // body: GridView(
+      //     gridDelegate:
+      //         SliverGridDelegateWithFixedCrossAxisCount(
+      //             crossAxisCount: 2,
+      //           mainAxisSpacing: 12,
+      //           crossAxisSpacing: 10,
+      //         ),
+      //          children: [
+      //            Text('Monem'),
+      //            Text('Monem'),
+      //            Text('Monem'),
+      //            Text('Monem')
+      //
+      //          ],
+      // ),
+      // body: GridView.builder(
+      //     gridDelegate:
+      //         SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+      //     itemCount: friendList.length,
+      //     itemBuilder: (context, index) {
+      //       return Text(friendList[index]);
+      //     }),
+      body: Padding(
+        key: Key('my-padding-key'),
+        padding: const EdgeInsets.all(8.0),
+        child: Form(
+          child: Column(
+            children: [
+              TextFormField(
+                autovalidateMode: AutovalidateMode.always,
+                controller: _emailTextEditingCOntroller,
+                decoration: InputDecoration(hintText: 'Email'),
+                validator: (String? value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Enter your email';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                autovalidateMode: AutovalidateMode.always,
+                controller: _PasswordEditingCOntroller,
+                decoration: InputDecoration(hintText: 'Password'),
+                validator: (String? value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Enter your Password';
+                  }
+                  return null;
+                },
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    // String email = _emailTextEditingCOntroller.text;
+                    // String password = _PasswordEditingCOntroller.text;
+                    // if (email.isEmpty && password.isEmpty) {
+                    //   print('Log in Success');
+                    // } else {
+                    //   print('login faild, missing data');
+                    // }
+                    if (_formkey.currentState!.validate()) {
+                      print('Login success');
+                    }
+                  },
+                  child: Text('Submit'))
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
