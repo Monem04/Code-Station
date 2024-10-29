@@ -1,0 +1,216 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(HelloWorldApp());
+}
+
+class HelloWorldApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Hello World app',
+      home: Home(),
+    );
+  }
+}
+
+//
+class Home extends StatelessWidget {
+  Home({super.key});
+
+  List<String> friendList = [
+    'Monem',
+    'Shimulla',
+    'Gopal',
+    'ridoy',
+    'hujur',
+    'Enuuu',
+    'Monem',
+    'Monem',
+    'Monem',
+    'Monem',
+    'Monem',
+    'Monem',
+    'Monem',
+    'Monem',
+    'Monem',
+    'Monem',
+    'Monem',
+    'Monem',
+    'Monem',
+    'Monem',
+  ];
+
+  TextEditingController _emailTextEditingCOntroller = TextEditingController();
+  TextEditingController _PasswordEditingCOntroller = TextEditingController();
+  GlobalKey<FormState> _formkey = GlobalKey<FormState>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Home'),
+        backgroundColor: Colors.pink,
+        actions: [
+          IconButton(onPressed: () {}, icon: const Icon(Icons.edit)),
+          IconButton(onPressed: () {}, icon: const Icon(Icons.delete))
+        ],
+        leading: const Icon(Icons.home),
+      ),
+
+      // body: ListView.builder(
+      //   itemCount: friendList.length,
+      //   itemBuilder: (context, index){
+      //     return ListTile(
+      //       title: Text(friendList[index]),
+      //       subtitle: Text('Friend no : $index'),
+      //       trailing: Icon(Icons.arrow_forward),
+      //       leading: CircleAvatar(
+      //         child: Icon(Icons.person),
+      //       ),
+      //       onTap: (){
+      //         print('on tap $index');
+      //       },
+      //       onLongPress: (){
+      //         print('on long press $index');
+      //       },
+      //       tileColor: Colors.white70,
+      //       contentPadding: EdgeInsets.symmetric(
+      //         horizontal: 16,
+      //         vertical: 4,
+      //       ),
+      //       //enabled: false,
+      //       dense: true,
+      //       titleTextStyle: TextStyle(
+      //         fontSize: 16,
+      //         color: Colors.deepOrange,
+      //       ),
+      //       subtitleTextStyle: TextStyle(
+      //         fontSize: 10,
+      //         color: Colors.purpleAccent,
+      //       ),
+      //       selected: true,
+      //       selectedColor: Colors.pink,
+      //     );
+      //   },
+      // )
+      // body: GridView(
+      //     gridDelegate:
+      //         SliverGridDelegateWithFixedCrossAxisCount(
+      //             crossAxisCount: 2,
+      //           mainAxisSpacing: 12,
+      //           crossAxisSpacing: 10,
+      //         ),
+      //          children: [
+      //            Text('Monem'),
+      //            Text('Monem'),
+      //            Text('Monem'),
+      //            Text('Monem')
+      //
+      //          ],
+      // ),
+      body: ListView.separated(
+          itemCount: friendList.length,
+          itemBuilder: (BuildContext context, index){
+            return Column(
+              children: [
+                Text(friendList[index]),
+                // Divider(
+                //   height: 20,
+                //   thickness: 5,
+                //   color: Colors.purpleAccent,
+                //   indent: 10,
+                //   endIndent: 10,
+                // ),
+              ],
+            );
+          },
+          separatorBuilder: (BuildContext context, int index){
+            return Container(
+              height: 10,
+              width: 30,
+              color: Colors.purpleAccent,
+
+            );
+            return Divider(
+              color: a.green,
+              indent: 16,
+              endIndent: 10,
+            );
+          },
+          ),
+      // body: ListView.builder(
+      //   itemCount: friendList.length,
+      //   itemBuilder: (BuildContext context, int index){
+      //     return Column(
+      //       children: [
+      //         Text(friendList[index]),
+      //         Divider(
+      //           height: 20,
+      //           thickness: 2,
+      //           color: Colors.pink,
+      //           endIndent: 16,
+      //           indent: 10,
+      //         )
+      //       ],
+      //     );
+      //   },
+      //
+      // ),
+
+      // body: Column(
+      //   children: <Widget>[
+      //     Row(
+      //       children: [
+      //         Container(
+      //           width: 100,
+      //           height: 100,
+      //           color: Colors.green,
+      //           margin: EdgeInsets.only(left: 24),
+      //         ),
+      //         Container(
+      //           width: 100,
+      //           height: 100,
+      //
+      //           alignment: Alignment.center,
+      //           padding: EdgeInsets.all(8),
+      //           margin: EdgeInsets.all(16),
+      //           decoration: BoxDecoration(
+      //             color: Colors.deepOrange,
+      //             boxShadow: <BoxShadow>[
+      //               BoxShadow(
+      //                 color: Colors.grey.withOpacity(0.5),
+      //                 spreadRadius: 5,
+      //                 blurRadius: 10,
+      //                 offset: Offset(0, 5)
+      //               )
+      //             ]
+      //             // border: Border.all(color: Colors.black),
+      //             // borderRadius: BorderRadius.only(
+      //             //   topLeft: Radius.circular(16),
+      //             //   bottomRight: Radius.circular(16),
+      //             // ),
+      //             //shape: BoxShape.circle,
+      //             //image: DecorationImage(image: )
+      //
+      //           ),
+      //           child: Text('Random'),
+      //         ),
+      //         Container(
+      //           width: 100,
+      //           height: 100,
+      //           color: Colors.deepOrange,
+      //           alignment: Alignment.center,
+      //           padding: EdgeInsets.all(16),
+      //         ),
+      //       ],
+      //     )
+      //
+      //
+      //   ],
+      // ),
+    );
+
+  }
+}
