@@ -1,0 +1,137 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(HelloWorldApp());
+}
+
+class HelloWorldApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Hello World app',
+      home: Home(),
+    );
+  }
+}
+
+class Home extends StatelessWidget {
+  Home({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Home'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return Profile(username: 'Monem');
+                      },
+                    ),
+                  );
+                },
+                child: Text('Go to prifile')),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return Setting();
+                      },
+                    ),
+                  );
+                },
+                child: Text('Move to Setting'),
+            ),
+
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+//Rout
+// Rout to ROut Navigation
+//Navigator
+class Profile extends StatelessWidget {
+  Profile({super.key, required this.username});
+
+  final String username;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Profile'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(username),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text('Back')),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => Home()),
+                          (predicate) => false);
+                },
+                child: Text('back to home'))
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class Setting extends StatelessWidget {
+  Setting({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Setting'),
+      ),
+      body: Center(
+        child: Column(
+          children: [
+            //go to profile
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Profile(username: 'Monem2')));
+                },
+                child: Text('Move to Profile')),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => Home()),
+                          (predicate) => false);
+                },
+                child: Text('back to home'))
+          ],
+        ),
+      ),
+    );
+  }
+}
